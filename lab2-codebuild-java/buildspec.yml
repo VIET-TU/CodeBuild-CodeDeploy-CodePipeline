@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install: # install các package để phục vụ cho việc build
+    runtime-versions:
+      java: corretto17 # runtime java 17
+  pre_build: # clear artifact cũ
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/**/*.jar
+  discard-paths: yes # chỉ lấy file không quan tâm thư mục cha chứa nó
